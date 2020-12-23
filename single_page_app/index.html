@@ -2,6 +2,44 @@
   <head>
     <title>To-Do Application</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+
+    <style>
+      #todo-app {
+        max-width: 500px;
+        margin: auto;
+        min-height: 300px;
+        border: solid 1px #ccc;
+        border-radius: 4px;
+        padding: 10px;
+      }
+      form {
+        text-align: center;
+        border-bottom: solid 1px #ccc;
+        padding-bottom: 10px;
+      }
+      button {
+        border-radius: 30px;
+        border: solid 1px #000;
+        padding: 5px;
+        min-width: 62px;
+        cursor: pointer;
+      }
+      input {
+        border: solid 1px #000;
+        padding: 5px;
+        border-radius: 5px;
+      }
+      li {
+        margin: 5px 0px;
+      }
+      .remove-btn {
+        margin-left: 10px;
+      }
+      .remove-btn:hover {
+        background: red;
+        color: #fff;
+      }
+    </style>
   </head>
 
   <body>
@@ -51,7 +89,7 @@
           ],
         },
         methods: {
-          addNewTodo: function () {
+          addNewTodo: function() {
             this.todos.push({
               id: this.todos.length,
               title: this.newTodoText,
@@ -61,43 +99,5 @@
         },
       });
     </script>
-
-    <style>
-      #todo-app {
-        max-width: 500px;
-        margin: auto;
-        min-height: 300px;
-        border: solid 1px #ccc;
-        border-radius: 4px;
-        padding: 10px;
-      }
-      form {
-        text-align: center;
-        border-bottom: solid 1px #ccc;
-        padding-bottom: 10px;
-      }
-      button {
-        border-radius: 30px;
-        border: solid 1px #000;
-        padding: 5px;
-        min-width: 62px;
-        cursor: pointer;
-      }
-      input {
-        border: solid 1px #000;
-        padding: 5px;
-        border-radius: 5px;
-      }
-      li {
-        margin: 5px 0px;
-      }
-      .remove-btn {
-        margin-left: 10px;
-      }
-      .remove-btn:hover {
-        background: red;
-        color: #fff;
-      }
-    </style>
   </body>
 </html>
