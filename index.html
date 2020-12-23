@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>To-Do Application</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+  </head>
+
+  <body>
+    <ul id="example-1">
+      <li v-for="item in items" :key="item.message">{{ item.message }}</li>
+    </ul>
+
+    <script>
+      var example1 = new Vue({
+        el: "#example-1",
+        data: {
+          items: [{ message: "Foo" }, { message: "Bar" }],
+        },
+      });
+    </script>
+  </body>
+</html>
