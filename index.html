@@ -5,17 +5,99 @@
   </head>
 
   <body>
-    <ul id="example-1">
-      <li v-for="item in items" :key="item.message">{{ item.message }}</li>
-    </ul>
+    <div id="todo-app">
+      <form v-on:submit.prevent="addNewTodo">
+        <label for="new-todo">Add a todo</label>
+        <input
+          v-model="newTodoText"
+          id="new-todo"
+          placeholder="E.g. Feed the cat"
+        />
+        <button>Add</button>
+      </form>
+      <ol v-if="todos.length">
+        <li
+          is="todo-item"
+          v-for="(todo, index) in todos"
+          v-bind:key="todo.id"
+          v-bind:title="todo.title"
+          v-on:remove="todos.splice(index, 1)"
+        ></li>
+      </ol>
+      <span v-else>No work today</span>
+    </div>
 
     <script>
-      var example1 = new Vue({
-        el: "#example-1",
+      Vue.component("todo-item", {
+        template:
+          "\
+    <li>\
+      {{ title }}\
+      <button v-on:click=\"$emit('remove')\" class='remove-btn'>Remove</button>\
+    </li>\
+  ",
+        props: ["title"],
+      });
+
+      new Vue({
+        el: "#todo-app",
         data: {
-          items: [{ message: "Foo" }, { message: "Bar" }],
+          newTodoText: "",
+          todos: [
+            {
+              id: 0,
+              title: "Do the dishes",
+            },
+          ],
+        },
+        methods: {
+          addNewTodo: function () {
+            this.todos.push({
+              id: this.todos.length,
+              title: this.newTodoText,
+            });
+            this.newTodoText = "";
+          },
         },
       });
     </script>
+
+    <style>
+      #todo-app {
+        max-width: 500px;
+        margin: auto;
+        min-height: 300px;
+        border: solid 1px #ccc;
+        border-radius: 4px;
+        padding: 10px;
+      }
+      form {
+        text-align: center;
+        border-bottom: solid 1px #ccc;
+        padding-bottom: 10px;
+      }
+      button {
+        border-radius: 30px;
+        border: solid 1px #000;
+        padding: 5px;
+        min-width: 62px;
+        cursor: pointer;
+      }
+      input {
+        border: solid 1px #000;
+        padding: 5px;
+        border-radius: 5px;
+      }
+      li {
+        margin: 5px 0px;
+      }
+      .remove-btn {
+        margin-left: 10px;
+      }
+      .remove-btn:hover {
+        background: red;
+        color: #fff;
+      }
+    </style>
   </body>
 </html>
