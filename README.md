@@ -1,2 +1,3 @@
 # todo-app
-todo-app using vue js.
+
+Sample todo-app using vue js.
