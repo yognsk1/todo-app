@@ -22,18 +22,18 @@
 </template>
 
 <script>
-import Vue from "vue";
-
-new Vue({
-  el: "#todo-app",
-  data: {
-    newTodoText: "",
-    todos: [
-      {
-        id: 0,
-        title: "Do the dishes",
-      },
-    ],
+export default {
+  name: "TodoList",
+  data: function() {
+    return {
+      newTodoText: "",
+      todos: [
+        {
+          id: 0,
+          title: "Do the dishes",
+        },
+      ],
+    };
   },
   methods: {
     addNewTodo: function() {
@@ -47,10 +47,6 @@ new Vue({
       this.todos.splice(index, 1);
     },
   },
-});
-
-export default {
-  name: "TodoList",
 };
 </script>
 
@@ -75,17 +71,19 @@ button {
   padding: 5px;
   min-width: 62px;
   cursor: pointer;
+  margin-left: 10px;
 }
 input {
   border: solid 1px #000;
   padding: 5px;
   border-radius: 5px;
+  margin-left: 10px;
+}
+ol {
+  text-align: left;
 }
 li {
   margin: 5px 0px;
-}
-.remove-btn {
-  margin-left: 10px;
 }
 .remove-btn:hover {
   background: red;
