@@ -1,18 +1,19 @@
 <template>
-  <div id="app">
-    <TodoList />
-  </div>
+  <TodoList />
 </template>
 
 <script>
+import Vue from "vue";
+import Component from "vue-class-component";
 import TodoList from "./components/TodoList.vue";
 
-export default {
-  name: "App",
+@Component({
   components: {
     TodoList,
   },
-};
+})
+class App extends Vue {}
+export default App;
 </script>
 
 <style>

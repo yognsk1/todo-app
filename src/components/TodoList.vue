@@ -7,7 +7,7 @@
         id="new-todo"
         placeholder="E.g. Feed the cat"
       />
-      <button>Add</button>
+      <button class="add-btn">Add</button>
     </form>
     <ol v-if="todos.length">
       <li v-for="(todo, index) in todos" v-bind:key="todo.id">
@@ -17,37 +17,36 @@
         </button>
       </li>
     </ol>
-    <span v-else>No work today</span>
+    <div v-else style="margin:1em;">No task today..</div>
   </div>
 </template>
 
 <script>
-export default {
-  name: "TodoList",
-  data: function() {
+import Vue from "vue";
+import Component from "vue-class-component";
+
+@Component
+class TodoList extends Vue {
+  data() {
     return {
       newTodoText: "",
-      todos: [
-        {
-          id: 0,
-          title: "Do the dishes",
-        },
-      ],
+      todos: [],
     };
-  },
-  methods: {
-    addNewTodo: function() {
+  }
+  addNewTodo() {
+    if (this.newTodoText) {
       this.todos.push({
         id: this.todos.length,
         title: this.newTodoText,
       });
       this.newTodoText = "";
-    },
-    removeTodo: function(index) {
-      this.todos.splice(index, 1);
-    },
-  },
-};
+    }
+  }
+  removeTodo(index) {
+    this.todos.splice(index, 1);
+  }
+}
+export default TodoList;
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -87,6 +86,10 @@ li {
 }
 .remove-btn:hover {
   background: red;
+  color: #fff;
+}
+.add-btn:hover {
+  background: rgb(123, 68, 224);
   color: #fff;
 }
 </style>
