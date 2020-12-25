@@ -10,9 +10,17 @@
       <button class="add-btn">Add</button>
     </form>
     <ol v-if="todos.length">
-      <li v-for="(todo, index) in todos" v-bind:key="todo.id">
+      <li
+        v-for="todo in todos"
+        v-bind:key="todo.id"
+        v-bind:class="[todo.deleted && 'deleted-cls']"
+      >
         {{ todo.title }}
-        <button v-on:click="removeTodo(index)" class="remove-btn">
+        <button
+          v-on:click="removeTodo(todo.id)"
+          v-if="!todo.deleted"
+          class="remove-btn"
+        >
           Remove
         </button>
       </li>
@@ -42,8 +50,13 @@ class TodoList extends Vue {
       this.newTodoText = "";
     }
   }
-  removeTodo(index) {
-    this.todos.splice(index, 1);
+  removeTodo(id) {
+    this.todos = this.todos.map(function(todo) {
+      if (todo.id == id) {
+        todo["deleted"] = true;
+      }
+      return todo;
+    });
   }
 }
 export default TodoList;
@@ -91,5 +104,9 @@ li {
 .add-btn:hover {
   background: rgb(123, 68, 224);
   color: #fff;
+}
+.deleted-cls {
+  text-decoration: line-through;
+  color: red;
 }
 </style>
