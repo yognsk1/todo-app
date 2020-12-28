@@ -24,4 +24,7 @@ export default App;
   text-align: center;
   color: #2c3e50;
 }
+body {
+  background: #000;
+}
 </style>

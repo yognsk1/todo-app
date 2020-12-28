@@ -35,11 +35,13 @@ import Component from "vue-class-component";
 
 @Component
 class TodoList extends Vue {
-  data() {
-    return {
-      newTodoText: "",
-      todos: [],
-    };
+  newTodoText = "";
+  todos = [];
+
+  //lifecycle method
+  beforeUpdate() {
+    document.title =
+      document.title.split(" ")[0] + " : " + this.todos.length + " task(s)";
   }
   addNewTodo() {
     if (this.newTodoText) {
@@ -71,6 +73,7 @@ export default TodoList;
   border: solid 1px #ccc;
   border-radius: 4px;
   padding: 10px;
+  background: #fff;
 }
 form {
   text-align: center;
