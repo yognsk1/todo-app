@@ -7,6 +7,7 @@
         id="new-todo"
         placeholder="E.g. Feed the cat"
       />
+      <input type="date" v-model="eventDate" />
       <button class="add-btn">Add</button>
     </form>
     <ol v-if="todos.length">
@@ -36,20 +37,26 @@ import Component from "vue-class-component";
 @Component
 class TodoList extends Vue {
   newTodoText = "";
+  eventDate = null;
   todos = [];
 
   //lifecycle method updated from main branch.
   beforeUpdate() {
-    document.title =
-      document.title.split(" ")[0] + " : " + this.todos.length + " task(s)";
+    console.log(this.todos);
   }
   addNewTodo() {
-    if (this.newTodoText) {
-      this.todos.push({
+    if (this.newTodoText && this.eventDate) {
+      const event = {
         id: this.todos.length,
         title: this.newTodoText,
-      });
+        date: this.eventDate,
+      };
+
+      this.todos.push(event);
       this.newTodoText = "";
+      this.eventDate = null;
+
+      this.$parent.addEvent(event);
     }
   }
   removeTodo(id) {
