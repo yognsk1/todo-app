@@ -1,5 +1,7 @@
 <template>
-  <TodoList />
+  <b-container fluid="sm">
+    <TodoList />
+  </b-container>
 </template>
 
 <script>
@@ -22,9 +24,5 @@ export default App;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-}
-body {
-  background: #000;
 }
 </style>

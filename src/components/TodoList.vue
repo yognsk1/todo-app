@@ -67,13 +67,11 @@ export default TodoList;
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #todo-app {
-  max-width: 500px;
   margin: auto;
   min-height: 300px;
   border: solid 1px #ccc;
   border-radius: 4px;
   padding: 10px;
-  background: #fff;
 }
 form {
   text-align: center;
