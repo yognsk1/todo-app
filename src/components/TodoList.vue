@@ -38,7 +38,7 @@ class TodoList extends Vue {
   newTodoText = "";
   todos = [];
 
-  //lifecycle method
+  //lifecycle method updated from main branch.
   beforeUpdate() {
     document.title =
       document.title.split(" ")[0] + " : " + this.todos.length + " task(s)";
