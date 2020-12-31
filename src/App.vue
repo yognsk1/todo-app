@@ -4,7 +4,11 @@
       <TodoList />
     </div>
     <div class="panels">
-      <FullCalendar v-bind:options="calendarOptions" />
+      <FullCalendarComponent
+        v-on:calanderEventItemClicked="calanderEventItemClickedListener"
+        :scheduleEventList="scheduleEventList"
+        @tooltipAnchorClicked="onTooltipAnchorClicked"
+      />
     </div>
   </div>
 </template>
@@ -12,33 +16,22 @@
 <script>
 import Vue from "vue";
 import Component from "vue-class-component";
-import FullCalendar from "@fullcalendar/vue";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
 
 @Component({
   components: {
     TodoList: () => import("./components/TodoList.vue"),
-    FullCalendar,
+    FullCalendarComponent: () =>
+      import("./components/FullCalendarComponent.vue"),
   },
 })
 class App extends Vue {
-  calendarOptions = {
-    plugins: [dayGridPlugin, interactionPlugin],
-    initialView: "dayGridMonth",
-    events: [{ title: "event 2", date: "2020-12-10" }],
-    dateClick: this.handleDateClick,
-  };
+  scheduleEventList = [];
 
-  handleDateClick(arg) {
-    console.log(arg);
+  calanderEventItemClickedListener(eventObject) {
+    console.log("calanderEventItemClickedListener", eventObject);
   }
-  addEvent({ title, date }) {
-    console.log("parent method call", event);
-    this.calendarOptions.events.push({
-      title,
-      date,
-    });
+  onTooltipAnchorClicked(val) {
+    console.log("onTooltipAnchorClicked", val);
   }
 }
 export default App;

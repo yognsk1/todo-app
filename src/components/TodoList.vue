@@ -40,10 +40,6 @@ class TodoList extends Vue {
   eventDate = null;
   todos = [];
 
-  //lifecycle method updated from main branch.
-  beforeUpdate() {
-    console.log(this.todos);
-  }
   addNewTodo() {
     if (this.newTodoText && this.eventDate) {
       const event = {
@@ -55,8 +51,6 @@ class TodoList extends Vue {
       this.todos.push(event);
       this.newTodoText = "";
       this.eventDate = null;
-
-      this.$parent.addEvent(event);
     }
   }
   removeTodo(id) {
